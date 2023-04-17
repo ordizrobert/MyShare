@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8CABA5FC29ECCAC900EFB95C /* ProportionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CABA5FB29ECCAC900EFB95C /* ProportionViewController.swift */; };
+		8CABA5FE29ECCAD500EFB95C /* EvenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CABA5FD29ECCAD500EFB95C /* EvenViewController.swift */; };
+		8CABA60429ED602700EFB95C /* EvenlyComputationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CABA60329ED602700EFB95C /* EvenlyComputationView.swift */; };
 		8CAD494529EB7F4F00BDB78F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD494429EB7F4F00BDB78F /* AppDelegate.swift */; };
 		8CAD494729EB7F4F00BDB78F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD494629EB7F4F00BDB78F /* SceneDelegate.swift */; };
 		8CAD494929EB7F4F00BDB78F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD494829EB7F4F00BDB78F /* ViewController.swift */; };
@@ -42,6 +45,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8CABA5FB29ECCAC900EFB95C /* ProportionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProportionViewController.swift; sourceTree = "<group>"; };
+		8CABA5FD29ECCAD500EFB95C /* EvenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvenViewController.swift; sourceTree = "<group>"; };
+		8CABA60329ED602700EFB95C /* EvenlyComputationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvenlyComputationView.swift; sourceTree = "<group>"; };
 		8CAD494129EB7F4F00BDB78F /* MyShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CAD494429EB7F4F00BDB78F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CAD494629EB7F4F00BDB78F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +94,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8CABA60229ED600900EFB95C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8CABA60329ED602700EFB95C /* EvenlyComputationView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		8CAD493829EB7F4F00BDB78F = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +125,7 @@
 		8CAD494329EB7F4F00BDB78F /* MyShare */ = {
 			isa = PBXGroup;
 			children = (
+				8CABA60229ED600900EFB95C /* Views */,
 				8CAD498229EB853900BDB78F /* Extensions */,
 				8CAD497F29EB82F500BDB78F /* Controller */,
 				8CAD497A29EB828600BDB78F /* BaseClass */,
@@ -156,6 +171,8 @@
 			isa = PBXGroup;
 			children = (
 				8CAD498029EB830D00BDB78F /* MainViewController.swift */,
+				8CABA5FB29ECCAC900EFB95C /* ProportionViewController.swift */,
+				8CABA5FD29ECCAD500EFB95C /* EvenViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -308,10 +325,13 @@
 				8CAD498129EB830D00BDB78F /* MainViewController.swift in Sources */,
 				8CAD494929EB7F4F00BDB78F /* ViewController.swift in Sources */,
 				8CAD494F29EB7F4F00BDB78F /* MyShare.xcdatamodeld in Sources */,
+				8CABA5FC29ECCAC900EFB95C /* ProportionViewController.swift in Sources */,
 				8CAD498429EB854800BDB78F /* Extensions.swift in Sources */,
 				8CAD497E29EB82A800BDB78F /* BaseNavigationController.swift in Sources */,
 				8CAD497C29EB829700BDB78F /* BaseViewController.swift in Sources */,
+				8CABA60429ED602700EFB95C /* EvenlyComputationView.swift in Sources */,
 				8CAD494529EB7F4F00BDB78F /* AppDelegate.swift in Sources */,
+				8CABA5FE29ECCAD500EFB95C /* EvenViewController.swift in Sources */,
 				8CAD494729EB7F4F00BDB78F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

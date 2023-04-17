@@ -36,6 +36,28 @@ extension UIView {
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = UIScreen.main.scale
     }
+    
+//    func setGradientBackground(colors: [UIColor], locations: [NSNumber]) {
+//        let gradientLayer = CAGradientLayer()
+//        gradientLayer.frame = bounds
+//        gradientLayer.colors = colors
+//        gradientLayer.locations = [0.0, 1.0]
+//        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+//        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+//        
+//        layer.insertSublayer(gradientLayer, at: 0)
+//    }
+    
+    func setGradientBackground(colors: [CGColor]) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = bounds
+        gradientLayer.colors = colors
+        gradientLayer.locations = [0.0, 0.5, 1.0]
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+        
+        layer.insertSublayer(gradientLayer, at: 0)
+    }
 }
 
 extension UIImage {
@@ -250,5 +272,19 @@ class Randomizer {
             randomString += string(length: length) + " "
         }
         return randomString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+    }
+}
+
+extension String {
+    var isNumber: Bool {
+        let digitsCharacters = CharacterSet(charactersIn: "0123456789")
+        return CharacterSet(charactersIn: self).isSubset(of: digitsCharacters)
+    }
+}
+
+extension Double {
+    func roundToDecimal(_ fractionDigits: Int) -> Double {
+        let multiplier = pow(10, Double(fractionDigits))
+        return Darwin.round(self * multiplier) / multiplier
     }
 }
