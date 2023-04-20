@@ -10,6 +10,16 @@
 		8CABA5FC29ECCAC900EFB95C /* ProportionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CABA5FB29ECCAC900EFB95C /* ProportionViewController.swift */; };
 		8CABA5FE29ECCAD500EFB95C /* EvenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CABA5FD29ECCAD500EFB95C /* EvenViewController.swift */; };
 		8CABA60429ED602700EFB95C /* EvenlyComputationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CABA60329ED602700EFB95C /* EvenlyComputationView.swift */; };
+		8CABA60829EEBF4000EFB95C /* SubTotalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CABA60729EEBF4000EFB95C /* SubTotalViewController.swift */; };
+		8CABA60A29EEBF4F00EFB95C /* TaxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CABA60929EEBF4F00EFB95C /* TaxViewController.swift */; };
+		8CABA60C29EEBF6200EFB95C /* TipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CABA60B29EEBF6200EFB95C /* TipViewController.swift */; };
+		8CABA60E29EED2E800EFB95C /* ProportionDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CABA60D29EED2E800EFB95C /* ProportionDashboardViewController.swift */; };
+		8CABA61029EEE44500EFB95C /* ProportionDashBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CABA60F29EEE44500EFB95C /* ProportionDashBoardView.swift */; };
+		8CABA61329F0198400EFB95C /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CABA61229F0198400EFB95C /* PersonCell.swift */; };
+		8CABA61529F02A5D00EFB95C /* ProportionValuesEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CABA61429F02A5D00EFB95C /* ProportionValuesEditor.swift */; };
+		8CABA61729F049DD00EFB95C /* EachShareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CABA61629F049DD00EFB95C /* EachShareData.swift */; };
+		8CABA61929F17A4100EFB95C /* PersonItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CABA61829F17A4100EFB95C /* PersonItemsViewController.swift */; };
+		8CABA61B29F1904F00EFB95C /* ItemEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CABA61A29F1904F00EFB95C /* ItemEditorViewController.swift */; };
 		8CAD494529EB7F4F00BDB78F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD494429EB7F4F00BDB78F /* AppDelegate.swift */; };
 		8CAD494729EB7F4F00BDB78F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD494629EB7F4F00BDB78F /* SceneDelegate.swift */; };
 		8CAD494929EB7F4F00BDB78F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD494829EB7F4F00BDB78F /* ViewController.swift */; };
@@ -48,6 +58,16 @@
 		8CABA5FB29ECCAC900EFB95C /* ProportionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProportionViewController.swift; sourceTree = "<group>"; };
 		8CABA5FD29ECCAD500EFB95C /* EvenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvenViewController.swift; sourceTree = "<group>"; };
 		8CABA60329ED602700EFB95C /* EvenlyComputationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvenlyComputationView.swift; sourceTree = "<group>"; };
+		8CABA60729EEBF4000EFB95C /* SubTotalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTotalViewController.swift; sourceTree = "<group>"; };
+		8CABA60929EEBF4F00EFB95C /* TaxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxViewController.swift; sourceTree = "<group>"; };
+		8CABA60B29EEBF6200EFB95C /* TipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipViewController.swift; sourceTree = "<group>"; };
+		8CABA60D29EED2E800EFB95C /* ProportionDashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProportionDashboardViewController.swift; sourceTree = "<group>"; };
+		8CABA60F29EEE44500EFB95C /* ProportionDashBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProportionDashBoardView.swift; sourceTree = "<group>"; };
+		8CABA61229F0198400EFB95C /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
+		8CABA61429F02A5D00EFB95C /* ProportionValuesEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProportionValuesEditor.swift; sourceTree = "<group>"; };
+		8CABA61629F049DD00EFB95C /* EachShareData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EachShareData.swift; sourceTree = "<group>"; };
+		8CABA61829F17A4100EFB95C /* PersonItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonItemsViewController.swift; sourceTree = "<group>"; };
+		8CABA61A29F1904F00EFB95C /* ItemEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemEditorViewController.swift; sourceTree = "<group>"; };
 		8CAD494129EB7F4F00BDB78F /* MyShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CAD494429EB7F4F00BDB78F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CAD494629EB7F4F00BDB78F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,8 +118,17 @@
 			isa = PBXGroup;
 			children = (
 				8CABA60329ED602700EFB95C /* EvenlyComputationView.swift */,
+				8CABA60F29EEE44500EFB95C /* ProportionDashBoardView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		8CABA61129F0197700EFB95C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8CABA61229F0198400EFB95C /* PersonCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		8CAD493829EB7F4F00BDB78F = {
@@ -125,6 +154,7 @@
 		8CAD494329EB7F4F00BDB78F /* MyShare */ = {
 			isa = PBXGroup;
 			children = (
+				8CABA61129F0197700EFB95C /* Cell */,
 				8CABA60229ED600900EFB95C /* Views */,
 				8CAD498229EB853900BDB78F /* Extensions */,
 				8CAD497F29EB82F500BDB78F /* Controller */,
@@ -137,6 +167,7 @@
 				8CAD495229EB7F5100BDB78F /* LaunchScreen.storyboard */,
 				8CAD495529EB7F5100BDB78F /* Info.plist */,
 				8CAD494D29EB7F4F00BDB78F /* MyShare.xcdatamodeld */,
+				8CABA61629F049DD00EFB95C /* EachShareData.swift */,
 			);
 			path = MyShare;
 			sourceTree = "<group>";
@@ -173,6 +204,13 @@
 				8CAD498029EB830D00BDB78F /* MainViewController.swift */,
 				8CABA5FB29ECCAC900EFB95C /* ProportionViewController.swift */,
 				8CABA5FD29ECCAD500EFB95C /* EvenViewController.swift */,
+				8CABA60729EEBF4000EFB95C /* SubTotalViewController.swift */,
+				8CABA60929EEBF4F00EFB95C /* TaxViewController.swift */,
+				8CABA60B29EEBF6200EFB95C /* TipViewController.swift */,
+				8CABA60D29EED2E800EFB95C /* ProportionDashboardViewController.swift */,
+				8CABA61429F02A5D00EFB95C /* ProportionValuesEditor.swift */,
+				8CABA61A29F1904F00EFB95C /* ItemEditorViewController.swift */,
+				8CABA61829F17A4100EFB95C /* PersonItemsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -322,17 +360,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CABA60E29EED2E800EFB95C /* ProportionDashboardViewController.swift in Sources */,
+				8CABA61B29F1904F00EFB95C /* ItemEditorViewController.swift in Sources */,
 				8CAD498129EB830D00BDB78F /* MainViewController.swift in Sources */,
 				8CAD494929EB7F4F00BDB78F /* ViewController.swift in Sources */,
 				8CAD494F29EB7F4F00BDB78F /* MyShare.xcdatamodeld in Sources */,
 				8CABA5FC29ECCAC900EFB95C /* ProportionViewController.swift in Sources */,
 				8CAD498429EB854800BDB78F /* Extensions.swift in Sources */,
 				8CAD497E29EB82A800BDB78F /* BaseNavigationController.swift in Sources */,
+				8CABA61029EEE44500EFB95C /* ProportionDashBoardView.swift in Sources */,
 				8CAD497C29EB829700BDB78F /* BaseViewController.swift in Sources */,
 				8CABA60429ED602700EFB95C /* EvenlyComputationView.swift in Sources */,
+				8CABA60A29EEBF4F00EFB95C /* TaxViewController.swift in Sources */,
 				8CAD494529EB7F4F00BDB78F /* AppDelegate.swift in Sources */,
+				8CABA61529F02A5D00EFB95C /* ProportionValuesEditor.swift in Sources */,
+				8CABA60829EEBF4000EFB95C /* SubTotalViewController.swift in Sources */,
 				8CABA5FE29ECCAD500EFB95C /* EvenViewController.swift in Sources */,
 				8CAD494729EB7F4F00BDB78F /* SceneDelegate.swift in Sources */,
+				8CABA61329F0198400EFB95C /* PersonCell.swift in Sources */,
+				8CABA61729F049DD00EFB95C /* EachShareData.swift in Sources */,
+				8CABA61929F17A4100EFB95C /* PersonItemsViewController.swift in Sources */,
+				8CABA60C29EEBF6200EFB95C /* TipViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

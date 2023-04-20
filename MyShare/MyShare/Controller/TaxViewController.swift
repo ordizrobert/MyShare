@@ -1,14 +1,14 @@
 //
-//  ProportionViewController.swift
+//  TaxViewController.swift
 //  MyShare
 //
-//  Created by robert ordiz on 4/17/23.
+//  Created by robert ordiz on 4/18/23.
 //
 
 import Foundation
 import UIKit
 
-class ProportionViewController: BaseViewController {
+class TaxViewController: BaseViewController {
     private lazy var doneButton:UIButton = {
         let doneButton = UIButton(type: .custom)
         doneButton.setImage(UIImage(named: "checkMark"), for: .normal)
@@ -21,7 +21,7 @@ class ProportionViewController: BaseViewController {
     
     lazy var topLabel:UILabel = {
         let topLabel = UILabel()
-        topLabel.text = LabelType.totalGroup.rawValue
+        topLabel.text = LabelType.taxAmout.rawValue
         topLabel.textAlignment = .center
         topLabel.textColor = .white
         topLabel.font = UIFont.systemFont(ofSize: 22)
@@ -39,8 +39,9 @@ class ProportionViewController: BaseViewController {
         let inputValuesTextField = UITextField()
         inputValuesTextField.inputAccessoryView = toolbar
         inputValuesTextField.borderStyle = .line
-        inputValuesTextField.text = "3"
-        inputValuesTextField.keyboardType = .numberPad
+        //inputValuesTextField.delegate = self
+        inputValuesTextField.addTarget(self, action: #selector(textFieldDidChange), for: UIControl.Event.editingChanged)
+        inputValuesTextField.keyboardType = .decimalPad
         inputValuesTextField.textAlignment = .center
         inputValuesTextField.font = UIFont.systemFont(ofSize: 42)
         inputValuesTextField.textColor = .white
@@ -48,33 +49,25 @@ class ProportionViewController: BaseViewController {
         inputValuesTextField.layer.borderWidth = 1
         inputValuesTextField.layer.cornerRadius = 5
         inputValuesTextField.layer.masksToBounds = true
-        inputValuesTextField.setLeftPaddingPoints(5)
-        inputValuesTextField.setRightPaddingPoints(5)
+        inputValuesTextField.setLeftPaddingPoints(20)
+        inputValuesTextField.setRightPaddingPoints(20)
         return inputValuesTextField
     }()
     
-    override var shouldShowBackButton: Bool {
-        return false
-    }
+    var totalGroup: Int = 0
+    var subTotal: Double = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func setupViews() {
-        let homeBtn = UIButton(type: .custom)
-        homeBtn.setImage(UIImage(named: "homeBtn"), for: .normal)
-        homeBtn.backgroundColor = .clear
-        homeBtn.addTarget(self, action: #selector(homeAction), for: .touchUpInside)
-        
-        view.addSubview(homeBtn)
-        homeBtn.anchor(top: view.safeAreaLayoutGuide.topAnchor)
-        homeBtn.centerX(inView: view)
-        homeBtn.setDimensions(height: 25, width: 25)
+        let homeButton = UIBarButtonItem(image: UIImage(named: "homeBtn"),  style: .plain, target: self, action: #selector(homeAction))
+        navigationItem.rightBarButtonItem = homeButton
         
         let logoImage = UIImageView()
         logoImage.contentMode = .scaleAspectFit
-        logoImage.image = UIImage(named: "darkNumOfPeople")
+        logoImage.image = UIImage(named: "darkTaxIcon")
         
         view.addSubview(logoImage)
         logoImage.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 80)
@@ -85,26 +78,7 @@ class ProportionViewController: BaseViewController {
         topLabel.anchor(top: logoImage.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 20, height: 30)
         
         view.addSubview(inputValuesTextField)
-        inputValuesTextField.centerX(inView: view)
-        inputValuesTextField.anchor(top: topLabel.bottomAnchor, paddingTop: 15, width: 150, height: 70)
-        
-        let plusBtn = UIButton(type: .custom)
-        plusBtn.setImage(UIImage(named: "plusBtn"), for: .normal)
-        plusBtn.backgroundColor = .clear
-        plusBtn.tag = 1
-        plusBtn.addTarget(self, action: #selector(plusMinusAction), for: .touchUpInside)
-        
-        view.addSubview(plusBtn)
-        plusBtn.anchor(top: inputValuesTextField.topAnchor, left: inputValuesTextField.rightAnchor, paddingLeft: 5, width: 40, height: 35)
-        
-        let minusBtn = UIButton(type: .custom)
-        minusBtn.setImage(UIImage(named: "minusBtn"), for: .normal)
-        minusBtn.backgroundColor = .clear
-        minusBtn.tag = 2
-        minusBtn.addTarget(self, action: #selector(plusMinusAction), for: .touchUpInside)
-        
-        view.addSubview(minusBtn)
-        minusBtn.anchor(left: inputValuesTextField.rightAnchor, bottom: inputValuesTextField.bottomAnchor, paddingLeft: 5, width: 40, height: 35)
+        inputValuesTextField.anchor(top: topLabel.bottomAnchor, left: topLabel.leftAnchor, right: topLabel.rightAnchor, paddingTop: 15, paddingLeft: 20, paddingRight: 20, height: 70)
         
         view.addSubview(doneButton)
         doneButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 300)
@@ -112,35 +86,38 @@ class ProportionViewController: BaseViewController {
         doneButton.setDimensions(height: 40, width: 40)
     }
     
-    @objc func plusMinusAction(sender: UIButton) {
-        var value: Int! = Int(inputValuesTextField.text!)
-        if sender.tag > 1 {
-            if inputValuesTextField.text != "0" {
-                value -= 1
-                inputValuesTextField.text = "\(value ?? 0)"
-            }
-            
-            return
-        }
-        
-        value += 1
-        inputValuesTextField.text = "\(value ?? 0)"
-    }
-    
     @objc func homeAction() {
         popToRootViewController()
     }
     
     @objc func doneAction() {
-        if inputValuesTextField.text!.count > 0 && inputValuesTextField.text?.isInt == true {
-            self.done()
-            let viewController = SubTotalViewController()
-            viewController.totalGroup = Int(inputValuesTextField.text!)!
+        self.done()
+        let tax: String = "\(inputValuesTextField.text?.dropFirst() ?? "")"
+        if inputValuesTextField.text!.count > 0 && tax.isInt == true {
+            let viewController = TipViewController()
+            viewController.totalGroup = self.totalGroup
+            viewController.subTotal = self.subTotal
+            viewController.tax = Double(tax)!
             navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+    
+    @objc func textFieldDidChange(textField: UITextField) {
+        if textField.text!.count == 1 {
+            inputValuesTextField.text = "$\(checkDollarSign(text: textField.text!))"
         }
     }
     
     @objc func done() {
         view.endEditing(true)
+    }
+    
+    func checkDollarSign(text: String) -> String {
+        let character: Character = "$"
+        if text.contains(character) {
+            return ""
+        }
+        
+        return text
     }
 }

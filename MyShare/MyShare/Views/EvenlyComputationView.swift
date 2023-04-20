@@ -7,11 +7,7 @@
 
 import UIKit
 import Foundation
-enum LabelType: String, CodingKey {
-    case grandTotal = "Enter Grand Total Amount"
-    case totalGroup = "Enter # of People in Group"
-    case perPerson = "Per Person"
-}
+
 protocol EvenlyComputationViewDelegate: AnyObject {
     func didTapBtn(sender: EvenlyComputationView, btn: UIButton)
 }
@@ -133,6 +129,7 @@ class EvenlyComputationView: UIView {
     
     @objc func handleBtnAction(sender: UIButton) {
         inputValuesTextField.isEnabled = true
+        //inputValuesTextField.text = ""
         topLabel.isHidden = false
         resetBtn.isHidden = true
         bottomLabel.isHidden = true
@@ -204,12 +201,12 @@ class EvenlyComputationView: UIView {
 extension EvenlyComputationView: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         let total: String = "\(totalBillLabel.text?.dropFirst() ?? "")"
-        if total.isNumber && numOfGroupsLabel.text!.isNumber {
+        if total.isInt && numOfGroupsLabel.text!.isInt {
             inputValuesTextField.isEnabled = false
             topLabel.isHidden = true
             resetBtn.isHidden = false
             bottomLabel.isHidden = false
-            let grandTotal: Double = Double((totalBillLabel.text?.dropFirst())!)!
+            let grandTotal: Double = Double(total)!
             let totalGroup: Double = Double(numOfGroupsLabel.text!)!
             let sharePerPerson: Double = grandTotal / totalGroup
             inputValuesTextField.text = "$\(sharePerPerson.roundToDecimal(2))"

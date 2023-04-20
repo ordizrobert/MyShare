@@ -13,13 +13,19 @@ class BaseViewController: UIViewController {
     var shouldShowBackButton: Bool {
         return true
     }
+    
+    var isGradient: Bool {
+        return true
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         let console = ConsoleDestination()  // log to Xcode Console
         log.addDestination(console)
         view.backgroundColor = .white
-        view.setGradientBackground(colors: [#colorLiteral(red: 0.7564757466, green: 0.4687396288, blue: 0.9820383191, alpha: 1).cgColor, #colorLiteral(red: 0.630576551, green: 0.3288735151, blue: 0.8758888841, alpha: 1).cgColor, #colorLiteral(red: 0.5067917705, green: 0.1973252296, blue: 0.7646642327, alpha: 1).cgColor])
+        if isGradient {
+            view.setGradientBackground(colors: [#colorLiteral(red: 0.7564757466, green: 0.4687396288, blue: 0.9820383191, alpha: 1).cgColor, #colorLiteral(red: 0.630576551, green: 0.3288735151, blue: 0.8758888841, alpha: 1).cgColor, #colorLiteral(red: 0.5067917705, green: 0.1973252296, blue: 0.7646642327, alpha: 1).cgColor])
+        }
         setupInitialConfiguration()
         setupViews()
     }

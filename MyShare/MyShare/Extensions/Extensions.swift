@@ -288,3 +288,18 @@ extension Double {
         return Darwin.round(self * multiplier) / multiplier
     }
 }
+
+extension String {
+    var isInt: Bool {
+        return Int(self) != nil
+    }
+}
+
+enum LabelType: String, CodingKey {
+    case grandTotal = "Enter Grand Total Amount"
+    case totalGroup = "Enter # of People in Group"
+    case perPerson = "Per Person"
+    case subTotalAmout = "Enter Subtotal Amount"
+    case taxAmout = "Enter Tax Amount"
+    case tipAmount = "Enter Tip Amount"
+}
