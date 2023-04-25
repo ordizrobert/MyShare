@@ -40,7 +40,7 @@ class EvenlyComputationView: UIView {
     
     lazy var numOfGroupsLabel:UILabel = {
         let numOfGroupsLabel = UILabel()
-        numOfGroupsLabel.text = "-"
+        numOfGroupsLabel.text = ""
         numOfGroupsLabel.textAlignment = .center
         numOfGroupsLabel.font = UIFont.systemFont(ofSize: 13)
         numOfGroupsLabel.adjustsFontSizeToFitWidth = true
@@ -118,7 +118,12 @@ class EvenlyComputationView: UIView {
     
     @objc func textFieldDidChange(textField: UITextField) {
         if topLabel.text == LabelType.grandTotal.rawValue {
-            totalBillLabel.text = "$\(textField.text?.dropFirst() ?? "")"
+            let replaced = textField.text!.replacingOccurrences(of: "$", with: "")
+            print(replaced)
+            let share: Double = Double(replaced) ?? 0.00
+            let twoDecimalPlaces = String(format: "%.2f", share)
+//            totalBillLabel.text = "$\(textField.text?.dropFirst() ?? "")"
+            totalBillLabel.text = "$\(twoDecimalPlaces)"
             if textField.text!.count == 1 {
                 inputValuesTextField.text = "$\(checkDollarSign(text: textField.text!))"
             }
@@ -141,9 +146,12 @@ class EvenlyComputationView: UIView {
         } else {
             let total: String = "\(totalBillLabel.text?.dropFirst() ?? "")"
             topLabel.text = LabelType.grandTotal.rawValue
-            if total.isNumber {
-                inputValuesTextField.text = totalBillLabel.text
-            }
+            //if total.isNumber {
+                let share: Double = Double(total)!
+                let twoDecimalPlaces = String(format: "$%.2f", share)
+                //inputValuesTextField.text = totalBillLabel.text
+                inputValuesTextField.text = twoDecimalPlaces
+            //}
         }
     }
     
@@ -201,7 +209,7 @@ class EvenlyComputationView: UIView {
 extension EvenlyComputationView: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         let total: String = "\(totalBillLabel.text?.dropFirst() ?? "")"
-        if total.isInt && numOfGroupsLabel.text!.isInt {
+        if totalBillLabel.text!.count > 1 && numOfGroupsLabel.text!.count > 0 {
             inputValuesTextField.isEnabled = false
             topLabel.isHidden = true
             resetBtn.isHidden = false
@@ -209,7 +217,8 @@ extension EvenlyComputationView: UITextFieldDelegate {
             let grandTotal: Double = Double(total)!
             let totalGroup: Double = Double(numOfGroupsLabel.text!)!
             let sharePerPerson: Double = grandTotal / totalGroup
-            inputValuesTextField.text = "$\(sharePerPerson.roundToDecimal(2))"
+            let twoDecimalPlaces = String(format: "%.2f", sharePerPerson)
+            inputValuesTextField.text = "$\(twoDecimalPlaces)"
         } else {
             if topLabel.text == LabelType.grandTotal.rawValue {
                 topLabel.text = LabelType.totalGroup.rawValue
@@ -219,12 +228,12 @@ extension EvenlyComputationView: UITextFieldDelegate {
                     inputValuesTextField.text = ""
                 }
             } else {
-                topLabel.text = LabelType.grandTotal.rawValue
-                if total.isNumber {
+//                topLabel.text = LabelType.grandTotal.rawValue
+//                if total.isNumber {
                     inputValuesTextField.text = totalBillLabel.text
-                } else {
-                    inputValuesTextField.text = ""
-                }
+//                } else {
+//                    inputValuesTextField.text = ""
+//                }
             }
         }
     }

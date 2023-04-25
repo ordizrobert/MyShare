@@ -92,8 +92,9 @@ class ItemCell: UITableViewCell {
     
     var data: Items! = nil {
         didSet {
+            let twoDecimalPlaces = String(format: "%.2f",  data.price!)
             nameLabel.text = data.item
-            shareLabel.text = "$\(data.price ?? 0.0)"
+            shareLabel.text = "$\(twoDecimalPlaces)"
         }
     }
     
@@ -129,7 +130,5 @@ class ItemCell: UITableViewCell {
         addSubview(nameLabel)
         nameLabel.anchor(left: leftAnchor, right: shareLabel.leftAnchor, paddingLeft: 60,height: 30)
         nameLabel.centerY(inView: self)
-        
-        colorizeBordersRecursive(view: self)
     }
 }

@@ -26,6 +26,7 @@ class ItemEditorViewController: BaseViewController, UIGestureRecognizerDelegate 
         inputValuesTextField.inputAccessoryView = toolbar
         inputValuesTextField.borderStyle = .line
         //inputValuesTextField.delegate = self
+        inputValuesTextField.placeholder = "Item name"
         inputValuesTextField.addTarget(self, action: #selector(textFieldDidChange), for: UIControl.Event.editingChanged)
         inputValuesTextField.keyboardType = .decimalPad
         inputValuesTextField.textAlignment = .center
@@ -70,7 +71,8 @@ class ItemEditorViewController: BaseViewController, UIGestureRecognizerDelegate 
     var data: Items! = nil {
         didSet {
             inputValuesTextField2.text = data.item
-            inputValuesTextField.text = "$\(data.price ?? 0.0)"
+            let twoDecimalPlaces = String(format: "%.2f", data.price!)
+            inputValuesTextField.text = "$\(twoDecimalPlaces)"
         }
     }
     
@@ -96,7 +98,7 @@ class ItemEditorViewController: BaseViewController, UIGestureRecognizerDelegate 
         let topLabel = UILabel()
         topLabel.textAlignment = .center
         topLabel.textColor = .black
-        topLabel.text = "Update Item"
+        topLabel.text = "Item \(index.row + 1)"
         topLabel.font = UIFont.systemFont(ofSize: 18)
         topLabel.adjustsFontSizeToFitWidth = true
         
@@ -125,6 +127,7 @@ class ItemEditorViewController: BaseViewController, UIGestureRecognizerDelegate 
     @objc func handleBtnAction() {
         data.item = inputValuesTextField2.text
         data.price = Double((inputValuesTextField.text?.dropFirst())!)
+        
         itemEditorViewControllerDelegate?.didUpdate(sender: self, index: index, updatedValue: data)
         self.dismiss(animated: true)
     }

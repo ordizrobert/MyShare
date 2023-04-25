@@ -38,9 +38,9 @@ class ProportionDashboardViewController: BaseViewController {
     
     var data: [EachShareData]! = []
     var totalGroup: Int = 0
-    var subTotal: Double = 0.0
-    var tax: Double = 0.0
-    var tip: Double = 0.0
+    var subTotal: Double = 0.00
+    var tax: Double = 0.00
+    var tip: Double = 0.00
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,7 +111,7 @@ extension ProportionDashboardViewController: UITableViewDelegate, UITableViewDat
     func checkTotalDifference() -> Double {
         var filteredData: [EachShareData]! = []
         filteredData = self.data.filter { ($0.items!.count != 0)}
-        
+
         if filteredData.count > 0 {
             var allItems: Double! = 0.0
             for i in 0..<filteredData.count {
@@ -119,11 +119,29 @@ extension ProportionDashboardViewController: UITableViewDelegate, UITableViewDat
                     allItems = allItems + (filteredData[i].items![n].price)!
                 }
             }
-            
+
             return subTotal - allItems
         }
-        
+
         return subTotal
+        
+//        var filteredData: [EachShareData]! = []
+//        filteredData = self.data.filter { ($0.totalShare != nil)}
+//
+//        if filteredData.count > 0 {
+//            var allItems: Double! = 0.0
+//            for i in 0..<filteredData.count {
+//                allItems = allItems + (filteredData[i].totalShare)!
+//            }
+//
+//            return grandTotal() - allItems
+//        }
+//
+//        return grandTotal()
+    }
+    
+    func grandTotal() -> Double {
+        return subTotal + tax + tip
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -145,35 +163,40 @@ extension ProportionDashboardViewController: UITableViewDelegate, UITableViewDat
             
             let percentage = (allItems / subTotal) * 100.0
             allItems = allItems + calculatePercentage(value: tax, percentageVal: percentage)
-            allItems = allItems + (tip / Double(totalGroup))
-            
-            return "$\(allItems.roundToDecimal(2))"
+            allItems = allItems + calculatePercentage(value: tip, percentageVal: percentage)
+            //allItems = allItems + (tip / Double(totalGroup))
+            let twoDecimalPlaces = String(format: "%.2f", allItems)
+            return "$\(twoDecimalPlaces)"
         } else {
-            var filteredData: [EachShareData]! = []
-            filteredData = self.data.filter { ($0.items!.count != 0)}
-            
-            if filteredData.count > 0 {
-                var allItems: Double! = 0.0
-                for i in 0..<filteredData.count {
-                    for n in 0..<filteredData[i].items!.count {
-                        allItems = allItems + (filteredData[i].items![n].price)!
-                    }
-                }
-                
-                let percentage = (allItems / subTotal) * 100.0
-                let dataCount = self.data.filter { ($0.items!.count == 0)}
-                var total = subTotal - allItems
-                total = total / Double(dataCount.count)
-                let taxToNoItems = (tax - calculatePercentage(value: tax, percentageVal: percentage)) / Double(dataCount.count)
-                total = total + taxToNoItems + (tip / Double(totalGroup))
-                
-                return "$\(total.roundToDecimal(2))"
-                
-            }
-            
-            let totalDecimal: Double = (subTotal / Double(totalGroup)).roundToDecimal(2) + (tip / Double(totalGroup)) + (tax / Double(totalGroup))
-            
-            return "$\(totalDecimal.roundToDecimal(2))"
+//            var filteredData: [EachShareData]! = []
+//            filteredData = self.data.filter { ($0.items!.count != 0)}
+//
+//            if filteredData.count > 0 {
+//                var allItems: Double! = 0.0
+//                for i in 0..<filteredData.count {
+//                    for n in 0..<filteredData[i].items!.count {
+//                        allItems = allItems + (filteredData[i].items![n].price)!
+//                    }
+//                }
+//
+//                let percentage = (allItems / subTotal) * 100.0
+//                let dataCount = self.data.filter { ($0.items!.count == 0)}
+//                var total = subTotal - allItems
+//                total = total / Double(dataCount.count)
+//                let taxToNoItems = (tax - calculatePercentage(value: tax, percentageVal: percentage)) / Double(dataCount.count)
+//                let tipToNoItems = (tip - calculatePercentage(value: tip, percentageVal: percentage)) / Double(dataCount.count)
+//                total = total + taxToNoItems + tipToNoItems
+//
+//                let twoDecimalPlaces = String(format: "%.2f", total)
+//                return "$\(twoDecimalPlaces)"
+//
+//            }
+//
+//            let totalDecimal: Double = (subTotal / Double(totalGroup)).roundToDecimal(2) + (tip / Double(totalGroup)) + (tax / Double(totalGroup))
+//
+//            let twoDecimalPlaces = String(format: "%.2f", totalDecimal)
+//            return "$\(twoDecimalPlaces)"
+            return "$-"
         }
     }
     

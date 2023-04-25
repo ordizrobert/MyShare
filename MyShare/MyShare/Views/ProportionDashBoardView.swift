@@ -25,6 +25,7 @@ class ProportionDashBoardView: UIView {
         let button = UIButton(type: .custom)
         button.tag = 1
         button.setImage(UIImage(named: "darkMoney"), for: .normal)
+        //button.imageView?.contentMode = .scaleAspectFit
         //button.addTarget(self, action: #selector(handleBtnAction), for: .touchUpInside)
         return button
     }()
@@ -62,8 +63,9 @@ class ProportionDashBoardView: UIView {
     private lazy var taxButton:UIButton = {
         let button = UIButton(type: .custom)
         button.tag = 3
-        button.setImage(UIImage(named: "darkTaxIcon"), for: .normal)
+        button.setImage(UIImage(named: "dollarIcon"), for: .normal)
         button.addTarget(self, action: #selector(handleBtnAction), for: .touchUpInside)
+        button.imageView?.contentMode = .scaleAspectFill
         return button
     }()
     
@@ -121,29 +123,37 @@ class ProportionDashBoardView: UIView {
     var totalGroup: Int = 0 {
         didSet {
             numOfGroupsLabel.text = "\(totalGroup)"
-            totalBillLabel.text = "$\(subTotal + tax + tip)"
+            let twoDecimalPlaces = String(format: "%.2f", subTotal + tax + tip)
+            totalBillLabel.text = "$\(twoDecimalPlaces)"
             
             let totalShareEach = (subTotal + tax + tip) / Double(totalGroup)
+            let twoDecimalPlaces1 = String(format: "%.2f", totalShareEach)
             
-            proportionDashBoardViewDelegate?.didChangeValue(sender: self, value: "$\(totalShareEach.roundToDecimal(2))")
+            proportionDashBoardViewDelegate?.didChangeValue(sender: self, value: "$\(twoDecimalPlaces1)")
         }
     }
     
-    var subTotal: Double = 0.0{
+    var subTotal: Double = 0.00{
         didSet {
-            subTotalLabel.text = "$\(subTotal)"
+            //let roundedValue = round(subTotal * 100) / 100.0
+            let twoDecimalPlaces = String(format: "%.2f", subTotal)
+            subTotalLabel.text = "$\(twoDecimalPlaces)"
         }
     }
     
-    var tax: Double = 0.0 {
+    var tax: Double = 0.00 {
         didSet {
-            taxLabel.text = "$\(tax)"
+            //let roundedValue = round(tax * 100) / 100.0
+            let twoDecimalPlaces = String(format: "%.2f", tax)
+            taxLabel.text = "$\(twoDecimalPlaces)"
         }
     }
     
-    var tip: Double = 0.0{
+    var tip: Double = 0.00 {
         didSet {
-            tipLabel.text = "$\(tip)"
+            //let roundedValue = round(tip * 100) / 100.0
+            let twoDecimalPlaces = String(format: "%.2f", tip)
+            tipLabel.text = "$\(twoDecimalPlaces)"
         }
     }
     
@@ -162,7 +172,7 @@ class ProportionDashBoardView: UIView {
     
     func setupViews() {
         addSubview(tipButton)
-        tipButton.anchor(top: topAnchor, paddingTop: 20, width: 30, height: 30)
+        tipButton.anchor(top: topAnchor, paddingTop: 20, width: 22, height: 22)
         tipButton.centerX(inView: self)
         
         addSubview(tipLabel)
@@ -170,14 +180,14 @@ class ProportionDashBoardView: UIView {
         tipLabel.centerX(inView: tipButton)
         
         addSubview(subtotalButton)
-        subtotalButton.anchor(top: topAnchor, right: tipButton.leftAnchor, paddingTop: 20, paddingRight: 70, width: 30, height: 30)
+        subtotalButton.anchor(top: topAnchor, right: tipButton.leftAnchor, paddingTop: 20, paddingRight: 70, width: 22, height: 19)
         
         addSubview(subTotalLabel)
         subTotalLabel.anchor(top: subtotalButton.bottomAnchor, paddingTop: 10, width: 80, height: 25)
         subTotalLabel.centerX(inView: subtotalButton)
         
         addSubview(taxButton)
-        taxButton.anchor(top: topAnchor, left: tipButton.rightAnchor, paddingTop: 20, paddingLeft: 70, width: 30, height: 30)
+        taxButton.anchor(top: topAnchor, left: tipButton.rightAnchor, paddingTop: 20, paddingLeft: 70, width: 12, height: 21)
         
         addSubview(taxLabel)
         taxLabel.anchor(top: taxButton.bottomAnchor, paddingTop: 10, width: 80, height: 25)
@@ -251,13 +261,13 @@ extension ProportionDashBoardView: ProportionValuesEditorDelegate {
     func didUpdate(sender: ProportionValuesEditor, index: Int, value: String) {
         let valueCopy = Double(value.dropFirst())
         if index == 1 {
-            subTotal = valueCopy ?? 0.0
+            subTotal = valueCopy ?? 0.00
             proportionDashBoardViewDelegate?.didChangeSubtotal(sender: self, value: subTotal)
         } else if index == 2 {
-            tip = valueCopy ?? 0.0
+            tip = valueCopy ?? 0.00
             proportionDashBoardViewDelegate?.didChangeTip(sender: self, value: tip)
         } else {
-            tax = valueCopy ?? 0.0
+            tax = valueCopy ?? 0.00
             proportionDashBoardViewDelegate?.didChangeTax(sender: self, value: tax)
         }
         

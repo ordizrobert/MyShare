@@ -101,10 +101,14 @@ class PersonItemsViewController: BaseViewController, UIGestureRecognizerDelegate
         
         view.addSubview(tableView)
         tableView.anchor(top: inputValuesTextField.bottomAnchor, left: view.leftAnchor, bottom: addBtn.topAnchor, right: view.rightAnchor, paddingTop: 20, paddingBottom: 10)
+        
+        if data.items?.count == 0 {
+            data.items?.append(Items(price: 0.00, item: "Item Name"))
+        }
     }
     
     @objc func addAction() {
-        data.items?.append(Items(price: 0.0, item: "Item"))
+        data.items?.append(Items(price: 0.00, item: "Item Name"))
         tableView.reloadData()
     }
     
@@ -115,6 +119,8 @@ class PersonItemsViewController: BaseViewController, UIGestureRecognizerDelegate
     @objc func doneAction() {
         if inputValuesTextField.text!.count > 0 {
             data.name = inputValuesTextField.text
+            let itemsData = self.data.items!.filter { ($0.price != 0.00)}
+            data.items = itemsData
             personItemsViewControllerDelegate?.didUpdate(sender: self, index: index, updatedValue: data)
             closeViewController()
         }
@@ -135,9 +141,10 @@ extension PersonItemsViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let datacopy = data.items![indexPath.row]
         let viewController = ItemEditorViewController()
         viewController.totalDifference = self.totalDifference
-        viewController.data = data.items![indexPath.row]
+        viewController.data = datacopy
         viewController.index = indexPath
         viewController.itemEditorViewControllerDelegate = self
         viewController.modalPresentationStyle = .overCurrentContext
@@ -167,6 +174,13 @@ extension PersonItemsViewController: ItemEditorViewControllerDelegate {
         if allItems > totalDifference {
             _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { timer in
                 self.showSimpleAlert(withTitle: "Warning", withMessage: "Invalid input! \(self.data.name ?? "") items price is higher than the difference between subtotal and all existing items.", withOKButtonTitle: "OK")
+            }
+            
+            for n in 0..<data.items!.count {
+                if n == index.row {
+                    data.items![n].price = 0.0
+                    break
+                }
             }
         } else {
             data.items![index.row] = updatedValue
