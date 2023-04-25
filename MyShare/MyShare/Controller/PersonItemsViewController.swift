@@ -173,12 +173,12 @@ extension PersonItemsViewController: ItemEditorViewControllerDelegate {
         
         if allItems > totalDifference {
             _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { timer in
-                self.showSimpleAlert(withTitle: "Warning: Total Subtotal Amount Exceeded!", withMessage: "The amount you have entered for this person's portion of the bill exceeds the original subtotal that was entered for the entire party. The sum of all individual amounts entered by all members of the party is greater than the original subtotal. Please review all the amounts you have entered and ensure they are accurate.", withOKButtonTitle: "OK")
+                self.showSimpleAlert(withTitle: "Warning", withMessage: "Total Subtotal Amount Exceeded! The sum of all individual amounts entered for the party is greater than the original subtotal. Please review the amounts entered and ensure they are accurate.", withOKButtonTitle: "OK")
             }
             
             for n in 0..<data.items!.count {
                 if n == index.row {
-                    data.items![n].price = 0.0
+                    data.items![n].price = 0.00
                     break
                 }
             }
